@@ -515,6 +515,13 @@
 
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="script.js"></script>
+    <script>
+  if (!localStorage.getItem("username")) {
+    window.location.href = "index.html"; // back to sign-in
+  }
+</script>
+
+
   </body>
 </html>
 
