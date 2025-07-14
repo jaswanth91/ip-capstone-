@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In | Hotel SIMATS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      :root {
+        --primary-color: #0f1a2c;
+        --secondary-color: #f6ac0f;
+        --white: #ffffff;
+        --text-dark: #0f172a;
+        --text-light: #64748b;
+        --header-font: "Playfair Display", serif;
+        --font: "Poppins", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background-color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .signin-container {
+        background: var(--white);
+        padding: 3rem 2rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(100px);
+      }
+
+      .signin-container h2 {
+        margin-bottom: 2rem;
+        color: var(--primary-color);
+        font-family: var(--header-font);
+      }
+
+      .input__group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .input__group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--primary-color);
+      }
+
+      .input__group input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .input__group input:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 5px var(--secondary-color);
+        outline: none;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        background-color: var(--secondary-color);
+        border: none;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .btn:hover {
+        background-color: #e09c0e;
+      }
+
+      .glow-border {
+        animation: glow 2s infinite alternate;
+        border: 2px solid var(--secondary-color);
+      }
+
+      @keyframes glow {
+        0% {
+          box-shadow: 0 0 5px var(--secondary-color);
+        }
+        100% {
+          box-shadow: 0 0 20px var(--secondary-color);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="signin-container glow-border" id="signinBox">
+      <h2>Sign In</h2>
+      <form id="signinForm">
+        <div class="input__group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required />
+        </div>
+        <div class="input__group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required />
+        </div>
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      // Animate sign-in box on load
+      gsap.to("#signinBox", {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: "power3.out",
+      });
+
+      // On form submit
+      const form = document.getElementById("signinForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        localStorage.setItem("username", username);
+        gsap.to("#signinBox", {
+          opacity: 0,
+          y: -50,
+          duration: 0.8,
+          onComplete: () => {
+            window.location.href = "index.html";
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
