@@ -1,3 +1,5 @@
+// On successful login
+window.location.href = "home.html";
 
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.getElementById("nav-links");
